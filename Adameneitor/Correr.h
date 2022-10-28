@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Node.h"
 #include "Ventana2.h"
 
@@ -35,6 +36,8 @@ private:
 	sf::RectangleShape* rectangulo;
 	sf::RectangleShape* rectangulo_s;
 
+	sf::Music musica;
+
 	bool gameover = false;
 
 	int opz, scl, fps, contador = 0;
@@ -55,6 +58,7 @@ public:
 		crear_figuras();
 		textos();
 		cargar_graficos();
+		sonido();
 		gameloop();
 	}
 
@@ -177,5 +181,11 @@ public:
 		spr_titulo.setTexture(txt_titulo);
 		spr_titulo.setPosition(150, 10);
 		spr_fondo.setScale((float)windows1->getSize().x / txt_fondo.getSize().x, (float)windows1->getSize().y / txt_fondo.getSize().y);
+	}
+
+	void sonido() {
+		musica.openFromFile("musica.ogg");
+		musica.setLoop(true);
+		musica.play();
 	}
 };
